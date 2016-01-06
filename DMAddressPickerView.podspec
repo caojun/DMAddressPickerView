@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DMAddressPickerView"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = ""
   s.description  = ""
   s.homepage     = "https://github.com/caojun/DMAddressPickerView"
@@ -14,8 +14,9 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/caojun/DMAddressPickerView.git", :tag => s.version.to_s }
 
-  s.source_files  = 'DMAddressPickerView/*.{h,m,xib,json}'
+  s.source_files  = 'DMAddressPickerView/*.{h,m}'
   s.exclude_files = "DMAddressPickerView/Exclude"
+  s.resource      = 'DMAddressPickerView/*.{xib,json}'
 
   s.requires_arc = true
 
