@@ -1,7 +1,7 @@
 /**
  The MIT License (MIT)
  
- Copyright (c) 2015 DreamCao
+ Copyright (c) 2015 Jun
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,22 +32,23 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
 
 @interface DMAddressPickerView ()  <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) DMAddressPickerViewSelectBlock m_selectBlock;
+@property (nullable, nonatomic, strong) DMAddressPickerViewSelectBlock m_selectBlock;
+
 /// 存放 DMAddressProvinceItem
-@property (nonatomic, strong) NSArray *m_cityList;
+@property (nullable, nonatomic, strong) NSArray<DMAddressProvinceItem *> *m_cityList;
 
-@property (nonatomic, strong) UIPickerView *m_pickerView;
-@property (nonatomic, strong) UIButton *m_btn;
+@property (nullable, nonatomic, strong) UIPickerView *m_pickerView;
+@property (nullable, nonatomic, strong) UIButton *m_btn;
 
-@property (nonatomic, strong) UIView *m_bottomBGView;
-@property (nonatomic, strong) UIView *m_titleBGView;
+@property (nullable, nonatomic, strong) UIView *m_bottomBGView;
+@property (nullable, nonatomic, strong) UIView *m_titleBGView;
 
 @end
 
 @implementation DMAddressPickerView
 
-+ (instancetype)showInView:(UIView *)superView
-        didSelectAreaBlock:(DMAddressPickerViewSelectBlock)block
++ (nonnull instancetype)showInView:(nonnull UIView *)superView
+                didSelectAreaBlock:(nullable DMAddressPickerViewSelectBlock)block
 {
     DMAddressPickerView *view = nil;
     
@@ -65,7 +66,6 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
         [UIView animateWithDuration:kDMAddressPickerViewDuration animations:^{
             frame.origin.y = 0;
             view.frame = frame;
-        } completion:^(BOOL finished) {
         }];
     }
     
@@ -184,9 +184,6 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
 {
     CGFloat viewWidth = CGRectGetWidth(self.bounds);
     CGFloat viewHeight = CGRectGetHeight(self.bounds);
-    
-    NSLog(@"viewWidth = %@", @(viewWidth));
-    NSLog(@"viewHeight = %@", @(viewHeight));
     
     CGFloat titleBGHeight = kDMAddressTitleBGViewHeight;
     CGFloat pickerViewHeight = CGRectGetHeight(self.m_pickerView.frame);

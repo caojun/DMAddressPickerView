@@ -1,7 +1,7 @@
 /**
  The MIT License (MIT)
  
- Copyright (c) 2015 DreamCao
+ Copyright (c) 2015 Jun
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class DMAddressCountyItem;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DMAddressProvinceItem : NSObject
 
 /// 省名称
-@property (nonatomic, copy) NSString *provinceName;
+@property (nullable, nonatomic, copy) NSString *provinceName;
 
 /// 存放 DMAddressCountyItem
-@property (nonatomic, strong) NSArray *countyList;
+@property (nullable, nonatomic, strong) NSArray<DMAddressCountyItem *> *countyList;
 
 @end
+
+NS_ASSUME_NONNULL_END

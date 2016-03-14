@@ -1,7 +1,7 @@
 /**
  The MIT License (MIT)
  
- Copyright (c) 2015 DreamCao
+ Copyright (c) 2015 Jun
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,15 +24,18 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^DMAddressPickerViewSelectBlock)(NSString *);
+typedef void(^DMAddressPickerViewSelectBlock)(NSString * __nullable);
 
 @interface DMAddressPickerView : UIView
 
-+ (instancetype)showInView:(UIView *)superView
-        didSelectAreaBlock:(DMAddressPickerViewSelectBlock)block;
++ (nonnull instancetype)showInView:(nonnull UIView *)superView
+                didSelectAreaBlock:(nullable DMAddressPickerViewSelectBlock)block;
 
 - (void)dismiss;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
