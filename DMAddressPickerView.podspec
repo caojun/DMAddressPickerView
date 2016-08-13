@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "DMAddressPickerView"
   s.version      = “0.0.4”
-  s.summary      = ""
+  s.summary      = "地址选择器"
   s.description  = ""
   s.homepage     = "https://github.com/caojun/DMAddressPickerView"
 
