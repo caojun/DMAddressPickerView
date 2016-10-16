@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DMAddressPickerView"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "地址选择器"
 
   s.description  = <<-DESC
@@ -92,8 +92,10 @@ Pod::Spec.new do |s|
   #
 
   #s.source_files  = "DMAddressPickerView", "DMAddressPickerViewDemo", "DMAddressPickerView/**/*.{h,m}", "DMAddressPickerViewDemo/**/*.{h,m}"
-   s.source_files  = 'DMAddressPickerView/*.{h,m,xib}'
-  s.exclude_files = "DMAddressPickerView/Exclude"
+    s.source_files  = 'DMAddressPickerView/*.{h,m,xib}'
+    s.exclude_files = "DMAddressPickerView/Exclude"
+    s.resource      = 'DMAddressPickerView/*.{xib,json}'
+
 
   # s.public_header_files = "DMAddressPickerView/**/*.h"
 
