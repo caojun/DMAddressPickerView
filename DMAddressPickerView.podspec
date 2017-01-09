@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DMAddressPickerView"
-  s.version      = "0.0.5"
+  s.version      = "1.0.0"
   s.summary      = "地址选择器"
 
   s.description  = <<-DESC

@@ -59,13 +59,15 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
         
         [superView addSubview:view];
         
-        __block CGRect frame = view.frame;
+        __block CGRect frame = view.m_bottomBGView.frame;
         frame.origin.y = view.frame.size.height;
-        view.frame = frame;
+        view.m_bottomBGView.frame = frame;
+        view.backgroundColor = [UIColor clearColor];
 
         [UIView animateWithDuration:kDMAddressPickerViewDuration animations:^{
-            frame.origin.y = 0;
-            view.frame = frame;
+            frame.origin.y = view.frame.size.height - frame.size.height;
+            view.m_bottomBGView.frame = frame;
+            view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
         }];
     }
     
@@ -75,9 +77,10 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
 - (void)dismiss
 {
     [UIView animateWithDuration:kDMAddressPickerViewDuration animations:^{
-        CGRect frame = self.frame;
-        frame.origin.y = frame.size.height;
-        self.frame = frame;
+        CGRect frame = self.m_bottomBGView.frame;
+        frame.origin.y = self.frame.size.height;
+        self.m_bottomBGView.frame = frame;
+        self.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -120,7 +123,7 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
     UIView *titleBGView = [[UIView alloc] init];
     [bottomBGView addSubview:titleBGView];
     self.m_titleBGView = titleBGView;
-    titleBGView.backgroundColor = [UIColor lightGrayColor];
+    titleBGView.backgroundColor = [UIColor clearColor];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [titleBGView addSubview:btn];
@@ -133,6 +136,9 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
     [self addGestureRecognizer:tap];
     
     [self decodeAddressFile];
+    
+    [self addSubview:self.m_bottomBGView];
+    [self adjustSubViewsFrame];
 }
 
 - (void)tapHandler:(UITapGestureRecognizer *)tap
@@ -182,8 +188,9 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
 
 - (void)adjustSubViewsFrame
 {
-    CGFloat viewWidth = CGRectGetWidth(self.bounds);
-    CGFloat viewHeight = CGRectGetHeight(self.bounds);
+    CGFloat viewWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
+    CGFloat viewHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
+    self.frame = (CGRect){0, 0, viewWidth, viewHeight};
     
     CGFloat titleBGHeight = kDMAddressTitleBGViewHeight;
     CGFloat pickerViewHeight = CGRectGetHeight(self.m_pickerView.frame);
@@ -203,18 +210,6 @@ static const CGFloat kDMAddressTitleBGViewHeight = 40;
     self.m_btn.frame = (CGRect){btnX, btnY, btnW, btnH};
     
     self.m_pickerView.frame = (CGRect){(viewWidth - pickerViewWidth) / 2, titleBGHeight, pickerViewWidth, pickerViewHeight};
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    if (![self.subviews containsObject:self.m_bottomBGView])
-    {
-        [self addSubview:self.m_bottomBGView];
-    }
-    
-    [self adjustSubViewsFrame];
 }
 
 - (void)decodeAddressFile
